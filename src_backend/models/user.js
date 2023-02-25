@@ -1,39 +1,24 @@
-const mongoose = require('mongoose')
+const { Sequelize, DataTypes } = require('sequelize')
+const sequelize = new Sequelize('sqlite::memory:')
 
-const userSchema = new mongoose.Schema({
+const User = sequelize.define('users', {
     employeeID: {
-        type: Number,
-        required: true,
-        trim: true
+        type: DataTypes.NUMBER,
+        allowNull: false,
     },
     firstName: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     lastName: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     password: {
-        type: String,
-        required: true,
-        minlength: 7,
-        trim: true,
+        type: DataTypes.STRING,
     },
     age: {
-        type: Number,
-        required: true,
-        validate(value){
-            if(value < 0){
-                throw new Error('Age must be a positive number')
-            }
-        }
+        type: DataTypes.NUMBER,
     }
 })
-
-const User = mongoose.model('users', userSchema)
 
 
 module.exports = User

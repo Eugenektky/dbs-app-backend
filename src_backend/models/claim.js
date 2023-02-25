@@ -1,51 +1,40 @@
-const mongoose = require('mongoose')
+const { Sequelize, DataTypes } = require('sequelize')
+const sequelize = new Sequelize('sqlite::memory:')
 
-const claimSchema = new mongoose.Schema({
+const claim = sequelize.define('claims', {
     claimID: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     insuranceID: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     firstName: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     lastName: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     expenseDate: {
-        type: String,
-        required: true,
-        trim: true
+        type: DataTypes.STRING,
     },
     amount: {
-        type: Number,
+        type: DataTypes.NUMBER,
     },
     purpose: {
-        type: String,
+        type: DataTypes.STRING,
     },
     followUp: {
-        type: Number,
+        type: DataTypes.NUMBER,
     },
     previousClaimID:{
-        type: null,
+        type: DataTypes.NULL,
     },
     status: {
-        type: String,
+        type: DataTypes.STRING,
     },
     lastEditedClaimDate: {
-        type: String,
+        type: DataTypes.STRING,
     }
 })
-
-const claim = mongoose.model('claims', claimSchema)
 
 module.exports = claim
