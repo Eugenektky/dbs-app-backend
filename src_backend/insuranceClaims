@@ -1,0 +1,16 @@
+const mongoose = require('mongoose')
+const InsuranceClaim = new mongoose.Schema({
+    "ClaimID": Number,
+    "InsuranceID": Number,
+    "FirstName": String,
+    "LastName": String,
+    "ExpenseDate": String,
+    "Amount": Float32Array,
+    "Purpose": String,
+    "FollowUp": Boolean,
+    "PreviousClaimID": Number,
+    "Status": String,
+    "LastEditedClaimDate": String
+})
+
+module.exports(InsuranceClaim)
