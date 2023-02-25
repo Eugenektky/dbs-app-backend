@@ -63,37 +63,47 @@ claimsRouter.post('/viewStatus',function(req,res) {
 //   })
 
 claimsRouter.post('/createClaim',function(req,res) {
-    const claimID = 9999
-    const insuranceID = req.body.InsuranceID
-    const firstName = req.body.FirstName
-    const lastName = req.body.LastName
-    const expenseDate = req.body.ExpenseDate
-    const amount = req.body.Amount
-    const purpose = req.body.Purpose
-    const followUp = req.body.FollowUp
-    const previousClaimID = req.body.PreviousClaimID
-    const status = req.body.Status
-    const lastEditedClaimDate = req.body.ExpenseDate
 
-    const claimValues = '("' + claimID + '", "' 
-                        + insuranceID + '", "' 
-                        + firstName + '", "' 
-                        + lastName + '", "' 
-                        + expenseDate + '", "' 
-                        + amount + '", "' 
-                        + purpose + '", "' 
-                        + followUp + '", "' 
-                        + previousClaimID + '", "' 
-                        + status + '", "' 
-                        + lastEditedClaimDate + '")' 
-    
-    pool.query(`INSERT INTO InsuranceData.InsuranceClaims VALUES ` + claimValues + `;`, function (err, results, field) {
+
+    pool.query(`SELECT MAX(ClaimID) AS a FROM InsuranceData.InsuranceClaims;`, function (err, results, field) {
         if (err) {
             res.status(400).json({error:err})
             } else {
-            res.status(200).json(results);
-            }
+            var claimID = 0
+            claimID = results[0].a + 1
+            const insuranceID = req.body.InsuranceID
+            const firstName = req.body.FirstName
+            const lastName = req.body.LastName
+            const expenseDate = req.body.ExpenseDate
+            const amount = req.body.Amount
+            const purpose = req.body.Purpose
+            const followUp = req.body.FollowUp
+            const previousClaimID = req.body.PreviousClaimID
+            const status = req.body.Status
+            const lastEditedClaimDate = req.body.ExpenseDate
+
+            const claimValues = '("' + claimID + '", "' 
+                                + insuranceID + '", "' 
+                                + firstName + '", "' 
+                                + lastName + '", "' 
+                                + expenseDate + '", "' 
+                                + amount + '", "' 
+                                + purpose + '", "' 
+                                + followUp + '", "' 
+                                + previousClaimID + '", "' 
+                                + status + '", "' 
+                                + lastEditedClaimDate + '")' 
+                
+            pool.query(`INSERT INTO InsuranceData.InsuranceClaims VALUES ` + claimValues + `;`, function (err, results, field) {
+                if (err) {
+                    res.status(400).json({error:err})
+                    } else {
+                    res.status(200).json(results);
+                    }
+            })
+        }
     })
+    
   })
 
   claimsRouter.delete('/deleteClaim',function(req,res) {
