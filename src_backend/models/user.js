@@ -1,17 +1,17 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    EmployeeID: {
+    employeeID: {
+        type: Number,
+        required: true,
+        trim: true
+    },
+    firstName: {
         type: String,
         required: true,
         trim: true
     },
-    firstname: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    lastname: {
+    lastName: {
         type: String,
         required: true,
         trim: true
@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('users', userSchema)
 
+console.log('hello, from models/user')
 module.exports = User
