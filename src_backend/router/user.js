@@ -12,6 +12,4 @@ userRouter.post('/users', (req, res) => {
     }
 })
 
-console.log('hello from router/user.js')
-
 module.exports = userRouter

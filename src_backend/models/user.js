@@ -35,5 +35,5 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('users', userSchema)
 
-console.log('hello, from models/user')
+
 module.exports = User
