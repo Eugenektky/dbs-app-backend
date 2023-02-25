@@ -1,7 +1,7 @@
 const express = require('express')
 const Claims = require('../models/insuranceClaims')
 const claimsRouter = new express.Router()
-var pool = require ("../config");
+var pool = require ("../db/db_connector.js");
 
 claimsRouter.post('/view',function(req,res) {
     const {employeeID} = req.body.employeeID
