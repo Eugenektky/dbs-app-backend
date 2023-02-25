@@ -1,11 +1,11 @@
-var express = require('express')
+const express = require('express')
+const userRouter = require('./router/user')
 const PORT = 3000
 
-var app = module.exports = express()
-app.use(express.json())
+const app = express()
 
-const user = require('./router/user')
-app.use('/user', user)
+app.use(express.json())
+app.use(userRouter)
 
 app.listen(PORT, () => {
     console.log('Server is up on port ' + PORT)
