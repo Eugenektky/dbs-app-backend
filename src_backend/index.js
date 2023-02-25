@@ -1,11 +1,11 @@
-const express = require('express')
-const User = require('./router/user')
-const PORT = process.env.PORT || 3000
+var express = require('express')
+const PORT = 3000
 
-const app = express()
+var app = module.exports = express()
 app.use(express.json())
-app.use(User)
 
+const user = require('./router/user')
+app.use('/user', user)
 
 app.listen(PORT, () => {
     console.log('Server is up on port ' + PORT)

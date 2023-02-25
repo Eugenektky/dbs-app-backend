@@ -1,6 +1,6 @@
-const User = require('./models/user')
 const express = require('express')
-const userRouter = new express.Router()
+const User = require('../models/user')
+const userRouter = express.Router()
 
 userRouter.post('/user/login', (req, res) => {
 
