@@ -1,15 +1,14 @@
 const express = require('express')
 const User = require('../models/user')
-const userRouter = express.Router()
+const userRouter = new express.Router()
 
-userRouter.post('/user/login', (req, res) => {
-
+userRouter.post('/users', (req, res) => {
     const user = new User(req.body)
     try{
         user.save()
-        res.send(user)
+        res.status(200).send(user)
     }catch(e){
-        res.send('unable to login')
+        res.status(400).send('unable to login')
     }
 })
 
