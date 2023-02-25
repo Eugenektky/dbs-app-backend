@@ -1,0 +1,3 @@
+function deleteClaim(int claimId) {
+    
+}
