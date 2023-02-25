@@ -96,16 +96,15 @@ claimsRouter.post('/createClaim',function(req,res) {
     })
   })
 
-//   claimsRouter.delete('/deleteClaim',function(req,res) {
-//     const {claimID} = req.body
-//     pool.query("DELETE FROM InsuranceData.InsuranceClaims WHERE claimID=" + claimID, function (err, result) {
-//       if (err) throw err;
-//       else {
-//         res = result;
-//         obj = {print: result};
-//         console.log(obj);
-//       }
-//     })
-//   })
+  claimsRouter.delete('/deleteClaim',function(req,res) {
+    const claimID = req.body.claimID
+    pool.query("DELETE FROM InsuranceData.InsuranceClaims WHERE claimID=" + claimID, function (err, results, field) {
+        if (err) {
+            res.status(400).json({error:err})
+            } else {
+            res.status(200).json(results);
+            }
+    })
+  })
 
   module.exports = claimsRouter
