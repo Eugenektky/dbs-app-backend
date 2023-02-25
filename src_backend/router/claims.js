@@ -62,28 +62,39 @@ claimsRouter.post('/viewStatus',function(req,res) {
 //     })
 //   })
 
-// claimsRouter.post('/createClaim',function(req,res) {
-//     const claimDetails = req.split(',')
-//     const claimID = Math.random()
-//     const insuranceID = claimDetails[0]
-//     const firstName = claimDetails[1]
-//     const lastName = claimDetails[2]
-//     const expenseDate = claimDetails[3]
-//     const amount = claimDetails[4]
-//     const purpose = claimDetails[5]
-//     const followUp = claimDetails[6]
-//     const previousClaimID = claimDetails[7]
-//     const status = 'Pending'
-//     const lastEditedClaimDate = new Date().toJSON()
-//     pool.query("INSERT INTO InsuranceData.InsuranceClaims VALUES + (claimID, insuranceID, firstName, lastName, expenseDate, amount, purpose, followUp, previousClaimID, status, lastEditedClaimDate);", function (err, result) {
-//       if (err) throw err;
-//       else {
-//         res = result;
-//         obj = {print: result};
-//         console.log(obj);
-//       }
-//     })
-//   })
+claimsRouter.post('/createClaim',function(req,res) {
+    const claimID = 9999
+    const insuranceID = req.body.InsuranceID
+    const firstName = req.body.FirstName
+    const lastName = req.body.LastName
+    const expenseDate = req.body.ExpenseDate
+    const amount = req.body.Amount
+    const purpose = req.body.Purpose
+    const followUp = req.body.FollowUp
+    const previousClaimID = req.body.PreviousClaimID
+    const status = req.body.Status
+    const lastEditedClaimDate = req.body.ExpenseDate
+
+    const claimValues = '("' + claimID + '", "' 
+                        + insuranceID + '", "' 
+                        + firstName + '", "' 
+                        + lastName + '", "' 
+                        + expenseDate + '", "' 
+                        + amount + '", "' 
+                        + purpose + '", "' 
+                        + followUp + '", "' 
+                        + previousClaimID + '", "' 
+                        + status + '", "' 
+                        + lastEditedClaimDate + '")' 
+    
+    pool.query(`INSERT INTO InsuranceData.InsuranceClaims VALUES ` + claimValues + `;`, function (err, results, field) {
+        if (err) {
+            res.status(400).json({error:err})
+            } else {
+            res.status(200).json(results);
+            }
+    })
+  })
 
 //   claimsRouter.delete('/deleteClaim',function(req,res) {
 //     const {claimID} = req.body
