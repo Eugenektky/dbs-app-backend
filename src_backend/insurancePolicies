@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
 const InsurancePolicies = new mongoose.Schema({
-    "InsuranceID": Number,
-    "EmployeeID": Number,
-    "Insurance Type": String,
-    "PolicyStartDate": String,
-    "PolicyTerm": "12 months",
-    "PolicyEndDate": String,
-    "ClaimLimit": Number,
-    "RemainingClaimLimit": Number
+    "insuranceID": Number,
+    "employeeID": Number,
+    "insuranceType": String,
+    "policyStartDate": String,
+    "policyTerm": "12 months",
+    "policyEndDate": String,
+    "claimLimit": Number,
+    "remainingClaimLimit": Number
 })
 
 module.exports(InsurancePolicies)
