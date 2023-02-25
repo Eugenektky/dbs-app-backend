@@ -2,10 +2,10 @@ const express = require('express')
 const Claims = require('../models/insuranceClaims')
 const claimsRouter = new express.Router()
 var pool = require ("../config");
+claimsRouter.use(express.json())
 
 claimsRouter.post('/view',function(req,res) {
-    const {employeeID} = req.body.employeeID
-    // const employeeID = 58001002
+    const employeeID = req.body.employeeID
     pool.query(`SELECT b.* FROM (
         (SELECT InsuranceID FROM InsuranceData.InsurancePolicies
         WHERE EmployeeID =` + employeeID + `) AS a 
@@ -30,24 +30,22 @@ claimsRouter.post('/view',function(req,res) {
 //     })
 //   })
 
-// claimsRouter.get('/viewStatus',function(req,res) {
-//     const claimDetails = req.split(',')
-//     const employeeID = claimDetails[0]
-//     const status = claimDetails[1]
-//     pool.query(`SELECT b.* FROM (
-//         (SELECT InsuranceID FROM InsuranceData.InsurancePolicies
-//         WHERE EmployeeID = 58001002) AS a 
-//         LEFT JOIN InsuranceData.InsuranceClaims AS b
-//         ON a.InsuranceID = b.InsuranceID)
-//         WHERE Status = "Approved";`, function (err, result) {
-//       if (err) throw err;
-//       else {
-//         res = result;
-//         obj = {print: result};
-//         console.log(obj);
-//       }
-//     })
-//   })
+claimsRouter.post('/viewStatus',function(req,res) {
+    const employeeID = req.body.employeeID
+    const status = req.body.status
+    pool.query(`SELECT b.* FROM (
+        (SELECT InsuranceID FROM InsuranceData.InsurancePolicies
+        WHERE EmployeeID =` + employeeID + `) AS a 
+        LEFT JOIN InsuranceData.InsuranceClaims AS b
+        ON a.InsuranceID = b.InsuranceID)
+        WHERE Status = "` + status +`";`, function (err, results, field) {
+        if (err) {
+            res.status(400).json({error:'400'})
+            } else {
+            res.status(200).json(results);
+            }
+    })
+  })
 
 // claimsRouter.get('/viewPurpose',function(req,res) {
 //     const claimDetails = req.split(',')
