@@ -1,0 +1,37 @@
+[
+    {
+     "EmployeeID": 58001001,
+     "Password": "iLoveTT!23",
+     "FirstName": "Irene",
+     "LastName": "Lim",
+     "Age": 27
+    },
+    {
+     "EmployeeID": 58001002,
+     "Password": "DBSB#stB4nk",
+     "FirstName": "Mary",
+     "LastName": "Lee",
+     "Age": 35
+    },
+    {
+     "EmployeeID": 58001003,
+     "Password": "JoinSEED20@3",
+     "FirstName": "John",
+     "LastName": "Tan",
+     "Age": 38
+    },
+    {
+     "EmployeeID": 58001004,
+     "Password": "LiveM0reb$nk1ess",
+     "FirstName": "Martin",
+     "LastName": "Ong",
+     "Age": 43
+    },
+    {
+     "EmployeeID": 58001005,
+     "Password": "J4vaPyth0nSq!",
+     "FirstName": "Sean",
+     "LastName": "Chia",
+     "Age": 52
+    }
+]
