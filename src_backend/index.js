@@ -7,6 +7,8 @@ const app = express()
 app.use(express.json())
 app.use(userRouter)
 
+var pool = require ("./config");
+
 app.listen(PORT, () => {
     console.log('Server is up on port ' + PORT)
 })
